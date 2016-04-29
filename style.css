@@ -1,0 +1,74 @@
+
+body {
+    overflow: hidden;
+    background-color: #EEEEEE;
+}
+
+.md-list-item-text h4 {
+    font-weight: bold;
+}
+
+.md-input-container {
+    padding: 3px 2px 0px 2px;
+}
+
+#toolbar_menu > column {
+    padding: 0px;
+}
+
+.md-list-item-text {
+    min-width: 60%;
+}
+
+.md-list-item-text > h3,
+h4 {
+    max-width: 70em;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+}
+
+.md-list-item-text > h3,
+h4:hover {
+    overflow: visible;
+}
+
+.md-errors-spacer {
+    min-height: 0px!important;
+}
+
+.material-icons {
+    margin-right: 1em;
+}
+
+.material-icons:hover {
+    color: #FB8C00;
+}
+
+.material-icons.md-18 {
+    font-size: 18px;
+}
+
+.material-icons.md-24 {
+    font-size: 24px;
+}
+
+.material-icons.md-36 {
+    font-size: 36px;
+}
+
+.material-icons.md-48 {
+    font-size: 48px;
+    margin: 0.48em 0.2em 0em 0em;
+}
+
+.more-functions {
+    width: 20%;
+
+}
+.ap-atist{
+    width: 100%;
+}
+.ap-title{
+    width: 100%;
+}
