@@ -1,13 +1,18 @@
 <html lang="en">
 
 <head>
-    <link rel="stylesheet" href="https://ajax.googleapis.com/ajax/libs/angular_material/1.0.7/angular-material.css">
-    <link rel="stylesheet" href="player.css">
-    <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=RobotoDraft:300,400,500,700,400italic">
-    <link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons">
-    <link rel="stylesheet" type="text/css" href="style.css">
+    <link rel="stylesheet" type="text/css" href="https://ajax.googleapis.com/ajax/libs/angular_material/1.0.7/angular-material.css">
+    <link rel="stylesheet" type="text/css" href="https://fonts.googleapis.com/css?family=RobotoDraft:300,400,500,700,400italic">
+    <link rel="stylesheet" type="text/css" href="https://fonts.googleapis.com/icon?family=Material+Icons">
+    <link rel="stylesheet" type="text/css" href="css/player.css">
+    <link rel="stylesheet" type="text/css" href="css/style.css">
     <meta name="viewport" content="initial-scale=1" />
 </head>
+<!--
+<body layout="column" ng-app="myApp">
+<ng-view></ng-view>
+</body>
+-->
 
 <body layout="column" ng-app="myApp">
     <div ng-controller="AppCtrl" layout="row" layout-fill ng-cloak>
@@ -17,7 +22,6 @@
                     <md-icon>{{data.app.icon}}</md-icon>
                     <div layout="column" layout-padding>
                         <span class="md-body-2">{{data.app.name}}</span>
-                        <span class="md-caption">{{data.app.email}}</span>
                         <span class="md-caption">{{data.app.version}}</span>
                     </div>
                     <span flex></span>
@@ -25,9 +29,9 @@
             </md-toolbar>
             <md-content role="navigation">
                 <md-list>
-                    <md-list-item ng-click="toast('ok')">
+                    <md-list-item>
                         <i class="material-icons">music_note</i>
-                        <p class="md-body-2">Musica</p>
+                        <p class="md-body-2">Music</p>
                         <span flex></span>
                         <md-icon>chevron_right</md-icon>
                     </md-list-item>
@@ -53,15 +57,21 @@
                     </md-content>
                     <md-list flex>
                         <md-list-item ng-repeat="song in songs" ng-click="playSong(song)" class="noright md-3-line">
-                           <div class="md-list-item-text" layout="column">
+                            <div class="md-list-item-text" layout="column">
                                 <h4>{{ song.title }}</h4>
                                 <h3>{{ song.artist }}</h3>
                                 <p>{{ song.duration | secondsToDateTime | date:'HH:mm:ss'}}</p>
                             </div>
-                            <div class="layout-row"  layout="row">
-                            <a><md-icon ng-click="playSong(song)"> play_arrow </md-icon></a>
-                            <a href="{{song.url}}" download><md-icon> cloud_download </md-icon></a>
-                           <a> <md-icon ng-click="playlistSong(song)"> playlist_add </md-icon></a>
+                            <div class="layout-row" layout="row">
+                                <a>
+                                    <md-icon ng-click="playSong(song)"> play_arrow </md-icon>
+                                </a>
+                                <a href="{{song.url}}" download>
+                                    <md-icon> cloud_download </md-icon>
+                                </a>
+                                <a>
+                                    <md-icon ng-click="playlistSong(song)"> playlist_add </md-icon>
+                                </a>
                             </div>
                         </md-list-item>
 
@@ -70,10 +80,9 @@
                     </md-list>
                 </md-content>
             </section>
-          
 
 
-           <!-- Audio player -->
+            <!-- Audio player -->
             <div class="ap" id="ap">
                 <div class="ap-inner">
                     <div class="ap-panel">
@@ -153,7 +162,6 @@
                 </div>
             </div>
 
-
         </section>
     </div>
     </<body>
@@ -163,8 +171,12 @@
 <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.3.15/angular-animate.min.js"></script>
 <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.3.15/angular-aria.min.js"></script>
 <script src="https://ajax.googleapis.com/ajax/libs/angular_material/1.0.7/angular-material.min.js"></script>
-<script src="player.js"></script>
-<script src="scripts.js"></script>
+<script src="js/player.js"></script>
+
+<script src="js/scripts.js"></script>
+<script src="js/directives.js"></script>
+<script src="js/services.js"></script>
+<script src="js/controllers.js"></script>
 </body>
 
 </html>

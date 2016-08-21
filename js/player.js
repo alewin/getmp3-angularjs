@@ -546,7 +546,7 @@ var AudioPlayer = (function() {
     };
 
     function addSong(add) {
-              playBtn.removeEventListener('click', toggleSong, false);
+        playBtn.removeEventListener('click', toggleSong, false);
         playList.push(add);
         renderPL();
     }

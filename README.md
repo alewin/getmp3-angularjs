@@ -1,5 +1,5 @@
 # Getmp3-angularjs
-Angularjs vk music player streaming download and playlist
+Angularjs Music player [ streaming | download | playlist ]
 
 ##**Demo**
 https://alewin.github.io/getmp3-angularjs/
@@ -19,7 +19,5 @@ https://alewin.github.io/getmp3-angularjs/
 1. Clean Code
 2. repeat button
 3. fix download
-4. fix player 
+4. fix player
 5. add youtube music search + mp3 download
-
-
