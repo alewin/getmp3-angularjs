@@ -1,0 +1,58 @@
+<div>
+    <md-toolbar layout="row">
+        <div class="md-toolbar-tools">
+            <h1>Getmp3</h1>
+            <span flex></span>
+            <div ng-hide
+            <md-list-item ng-href="#!/music/vk">
+                <p class="md-body-2">VK Music</p>
+            </md-list-item>
+            <md-list-item ng-href="#!/music/youtube">
+                <p class="md-body-2">Youtube Music</p>
+            </md-list-item>
+
+            <div layout="row" layout-align="end center">
+                <div hide-gt-xs class="pull-right">
+                    <md-button ng-click="toggleSidenav('left')" class="md-icon-button">
+                        <md-icon class="material-icons">menu</md-icon>
+                    </md-button>
+                </div>
+            </div>
+        </div>
+    </md-toolbar>
+
+    <!--The sidenav starts here-->
+
+
+    <md-sidenav class="md-sidenav-left md-whiteframe-z2" role="sidenav" md-component-id="left">
+        <md-toolbar class="md-tall md-hue-2" layout-align="top top">
+            <div id="toolbar_menu" layout layout-padding>
+                <md-icon>{{data.app.icon}}</md-icon>
+                <div layout="column" layout-padding>
+                    <span class="md-body-2">{{data.app.name}}</span>
+                    <span class="md-caption">{{data.app.version}}</span>
+                </div>
+                <span flex></span>
+            </div>
+        </md-toolbar>
+        <md-content role="navigation">
+            <md-list>
+                <md-list-item ng-href="#!/music/vk">
+                    <i class="material-icons">music_note</i>
+                    <p class="md-body-2">VK Music</p>
+                    <span flex></span>
+                    <md-icon>chevron_right</md-icon>
+                </md-list-item>
+                <md-list-item ng-href="#!/music/youtube">
+                    <i class="material-icons">music_note</i>
+                    <p class="md-body-2">Youtube Music</p>
+                    <span flex></span>
+                    <md-icon>chevron_right</md-icon>
+                </md-list-item>
+            </md-list>
+        </md-content>
+    </md-sidenav>
+
+
+
+</div>

@@ -54,3 +54,9 @@ body {
 .ap-title {
     width: 100%;
 }
+#global_view{
+  overflow-x: auto;
+}
+#search_song{
+      text-transform: capitalize;
+}

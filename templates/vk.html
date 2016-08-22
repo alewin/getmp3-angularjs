@@ -1,0 +1,36 @@
+<section id="content" role="content" layout="column" layout-padding md-scroll-y>
+    <md-content class="md-whiteframe-z2" ng-cloak>
+        <md-content>
+            <md-input-container class="md-block">
+                <label>Search song on Vk</label>
+                <input id="search_song" ng-model="search_song" type="text" my-enter="searchMusic(search_song)">
+            </md-input-container>
+        </md-content>
+        <md-list flex>
+            <md-list-item ng-repeat="song in songs" ng-click="playSong(song)" class="noright md-3-line">
+                <div class="md-list-item-text" layout="column">
+
+                    <h4>{{ song.title }}</h4>
+                    <h3>{{ song.artist }}</h3>
+                    <p>{{ song.duration | secondsToDateTime | date:'HH:mm:ss'}}</p>
+
+
+                </div>
+                <div class="layout-row" layout="row">
+                    <a>
+                        <md-icon ng-click="playSong(song)"> play_arrow </md-icon>
+                    </a>
+                    <a href="{{song.url}}" download>
+                        <md-icon> cloud_download </md-icon>
+                    </a>
+                    <a>
+                        <md-icon ng-click="playlistSong(song)"> playlist_add </md-icon>
+                    </a>
+                </div>
+            </md-list-item>
+
+
+
+        </md-list>
+    </md-content>
+</section>

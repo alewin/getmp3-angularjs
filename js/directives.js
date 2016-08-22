@@ -5,6 +5,7 @@ app.filter('secondsToDateTime', [function() {
 }])
 
 app.directive('myEnter', function() {
+  console.log("OK");
     return function(scope, element, attrs) {
         element.bind("keydown keypress", function(event) {
             if (event.which === 13) {
@@ -14,6 +15,14 @@ app.directive('myEnter', function() {
                 event.preventDefault();
             }
         });
+    };
+});
+
+app.directive('header', function() {
+    return {
+        restrict: 'EA',
+        templateUrl: 'templates/header.html',
+        controller: "sidenavCtrl"
     };
 });
 
