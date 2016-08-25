@@ -21,8 +21,8 @@ app.controller('sidenavCtrl', function($scope, $mdSidenav) {
 
 
 app.controller('VkCtrl', function($scope, MusicService) {
-    var iconImage = 'http://funkyimg.com/i/21pX5.png';
-
+    var iconImage = 'img/music_icon.png';
+    
     $scope.playlistSong = function(song) {
 
         var add = {
