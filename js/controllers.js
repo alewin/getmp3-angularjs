@@ -32,7 +32,7 @@ app.controller('VkCtrl', function($scope, MusicService) {
             'file': song.url
         };
 
-        AP.playSong(add);
+        AP.addSong(add);
     }
     $scope.playSong = function(song) {
 
