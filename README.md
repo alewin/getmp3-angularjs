@@ -1,23 +1,10 @@
-# Getmp3-angularjs
+# Getmp3 [Electron app](http://electron.atom.io/)
 Angularjs Music player [ streaming | download | playlist ]
 
 ##**Demo**
-https://alewin.github.io/getmp3-angularjs/
-
-
-##**Maybe Works**
-1. search music
-2. playlist add/remove
-3. download mp3
-4. mobile responsive
+(old)https://alewin.github.io/getmp3-angularjs/
 
 ##**ScreenShot**
 ![getmp3 angularjs](https://i.imgur.com/uxKCC1l.png)
 
 
-##**TODO**
-1. Clean Code
-2. repeat button
-3. fix download
-4. fix player
-5. add youtube music search + mp3 download
