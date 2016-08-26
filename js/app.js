@@ -3,13 +3,17 @@ var app = angular.module('myApp', ['ngMaterial', 'ngRoute']);
 app.config(function config($locationProvider, $routeProvider) {
     $locationProvider.hashPrefix('!');
     $routeProvider.
+    
     when('/music/youtube', {
-        templateUrl: 'templates/youtube.html',
-        controller: "YoutubeCtrl"
+        templateUrl: 'templates/music_list.html',
+        controller: "MusicCtrl",
+        paramMusicService: 'youtube'
+
     }).
     when('/music/vk', {
-        templateUrl: 'templates/vk.html',
-        controller: "VkCtrl"
+        templateUrl: 'templates/music_list.html',
+        controller: "MusicCtrl",
+        paramMusicService: 'vk'
     }).
     otherwise('/music/vk');
 });
