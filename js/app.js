@@ -1,9 +1,13 @@
 var app = angular.module('myApp', ['ngMaterial', 'ngRoute']);
+var fs = require('fs');
+var youtubedl = require('youtube-dl')
+var spawn = require('child_process').spawn;
+var util = require('util');
 
 app.config(function config($locationProvider, $routeProvider) {
     $locationProvider.hashPrefix('!');
     $routeProvider.
-    
+
     when('/music/youtube', {
         templateUrl: 'templates/music_list.html',
         controller: "MusicCtrl",
@@ -15,7 +19,7 @@ app.config(function config($locationProvider, $routeProvider) {
         controller: "MusicCtrl",
         paramMusicService: 'vk'
     }).
-    otherwise('/music/vk');
+    otherwise('/music/youtube');
 });
 
 var AP = AudioPlayer;
