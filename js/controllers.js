@@ -22,7 +22,7 @@ app.controller('sidenavCtrl', function($scope, $mdSidenav) {
 
 app.controller('MusicCtrl', function($scope, $route, MusicService) {
     var iconImage = 'img/music_icon.png';
-    var which_service = $route.current.$$route.paramMusicService;
+    $scope.which_service = $route.current.$$route.paramMusicService;
 
 
     function getYoutubemp3() {
@@ -54,16 +54,24 @@ app.controller('MusicCtrl', function($scope, $route, MusicService) {
         return add;
     }
     $scope.playlistSong = function(song) {
-        var add = createMusicStruct(which_service, song);
+        var add = createMusicStruct($scope.which_service, song);
         AP.addSong(add);
     }
     $scope.playSong = function(song) {
-        var add = createMusicStruct(which_service, song);
+        var add = createMusicStruct($scope.which_service, song);
         AP.playSong(add);
+    }
+    $scope.downloadSong = function(song) {
+        switch ($scope.which_service) {
+            case 'vk':
+                return song.url;
+            case youtube:
+                return getYoutubemp3(song.id.videoId);
+        }
     }
     $scope.searchMusic = function(query) {
         //TODO remove redundant from MusicService and add generic searchMusic function with service parameter
-        if (which_service == 'vk') {
+        if ($scope.which_service == 'vk') {
             var promise = MusicService.vk(query);
             promise.then(
                 function(pay) {
@@ -71,7 +79,7 @@ app.controller('MusicCtrl', function($scope, $route, MusicService) {
                     $scope.songs = pay.response;
                 });
         }
-        if (which_service == 'youtube') {
+        if ($scope.which_service == 'youtube') {
             promise = MusicService.youtube(query);
             promise.then(
                 function(pay) {
