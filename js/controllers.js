@@ -29,6 +29,40 @@ app.controller('MusicCtrl', function($scope, $route, MusicService) {
         return 'http://youtube.com'; // TODO lol
     }
 
+
+
+
+    function download_youtube_video(video_id) {
+        var out_dir = "/var/www/html/getmp3-angularjs/"
+        
+        var dl_proc = spawn('youtube-dl', [
+            '--no-progress',
+            '--extract-audio',
+            '--audio-format', 'mp3',
+            '-o', '%(title)s.%(ext)s',
+            util.format("https://www.youtube.com/watch?v=%s", video_id)
+        ], {
+            cwd: out_dir,
+            stdio: 'pipe'
+        });
+        var out_file_name = null;
+        dl_proc.stdout.on('data', function(data) {
+            var line = data.toString().trim();
+            util.log('youtube-dl: ' + line);
+            var dest_match = line.match(/Destination: (.*)/);
+            if (dest_match) {
+                out_file_name = dest_match[1];
+            }
+        });
+        dl_proc.stderr.on('data', function(data) {
+            util.log('youtube-dl: ' + data.toString().trim());
+        });
+        dl_proc.on('close', function(code) {
+            console.log('ciao');
+        });
+    }
+
+
     function createMusicStruct(who, song) {
         var add = {};
         switch (who) {
@@ -65,8 +99,8 @@ app.controller('MusicCtrl', function($scope, $route, MusicService) {
         switch ($scope.which_service) {
             case 'vk':
                 return song.url;
-            case youtube:
-                return getYoutubemp3(song.id.videoId);
+            case 'youtube':
+                download_youtube_video(song.id.videoId);
         }
     }
     $scope.searchMusic = function(query) {
@@ -80,7 +114,7 @@ app.controller('MusicCtrl', function($scope, $route, MusicService) {
                 });
         }
         if ($scope.which_service == 'youtube') {
-            promise = MusicService.youtube(query);
+            var promise = MusicService.youtube(query);
             promise.then(
                 function(pay) {
                     pay.items.shift();
