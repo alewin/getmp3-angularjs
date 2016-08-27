@@ -33,8 +33,6 @@ app.controller('MusicCtrl', function($scope, $route, MusicService) {
 
 
     function download_youtube_video(video_id) {
-        var out_dir = "/var/www/html/getmp3-angularjs/"
-        
         var dl_proc = spawn('youtube-dl', [
             '--no-progress',
             '--extract-audio',
@@ -42,7 +40,7 @@ app.controller('MusicCtrl', function($scope, $route, MusicService) {
             '-o', '%(title)s.%(ext)s',
             util.format("https://www.youtube.com/watch?v=%s", video_id)
         ], {
-            cwd: out_dir,
+            cwd: download_path,
             stdio: 'pipe'
         });
         var out_file_name = null;

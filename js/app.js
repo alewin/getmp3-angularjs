@@ -4,10 +4,20 @@ var youtubedl = require('youtube-dl')
 var spawn = require('child_process').spawn;
 var util = require('util');
 
+
+var configFile = 'config.json';
+
+var configFile = JSON.parse(
+    fs.readFileSync(configFile)
+);
+
+var download_path = configFile.download_path;
+console.log(configFile.download_path);
+
+
 app.config(function config($locationProvider, $routeProvider) {
     $locationProvider.hashPrefix('!');
     $routeProvider.
-
     when('/music/youtube', {
         templateUrl: 'templates/music_list.html',
         controller: "MusicCtrl",
