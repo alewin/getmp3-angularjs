@@ -31,11 +31,11 @@ app.controller('MusicCtrl', function($scope, $route, MusicService) {
 
 
 
-
     function download_youtube_video(video_id) {
-        var dl_proc = spawn('youtube-dl', [
-            '--no-progress',
+        var out_file_name = null;
+        var video = spawn('youtube-dl', [
             '--extract-audio',
+            '--no-check-certificate',
             '--audio-format', 'mp3',
             '-o', '%(title)s.%(ext)s',
             util.format("https://www.youtube.com/watch?v=%s", video_id)
@@ -43,20 +43,51 @@ app.controller('MusicCtrl', function($scope, $route, MusicService) {
             cwd: download_path,
             stdio: 'pipe'
         });
-        var out_file_name = null;
-        dl_proc.stdout.on('data', function(data) {
+
+
+
+        video.stdout.on('data', function(data) {
+
+            chunkString = data.toString();
+            var rowArray = splitLogToRows(chunkString);
+            rowArray.forEach(function(row) {
+                switch (row.type) {
+                    case "download":
+                        log = (row.value);
+                        if (log.indexOf("% of") != -1 && log.indexOf("ETA") != -1) {
+                            percentage = log.substring(0, log.indexOf("%"));
+                            console.log(percentage);
+                            timeLeft = log.substr(log.indexOf("ETA ") + "ETA ".length);
+                            console.log(timeLeft);
+                        }
+                        break;
+                    case "ffmpeg":
+                        log = (row.value);
+                        if (log.indexOf("Destination") == 0) {
+                            console.log("Converting to mp3...");
+                        } else {
+                            console.log("Finished converting! saving the file..");
+                        }
+                        break;
+                    default:
+                        console.log("Recieved Unknown Key:" + row.type);
+                }
+            });
+
+
             var line = data.toString().trim();
-            util.log('youtube-dl: ' + line);
+            console.log(line);
             var dest_match = line.match(/Destination: (.*)/);
             if (dest_match) {
                 out_file_name = dest_match[1];
             }
         });
-        dl_proc.stderr.on('data', function(data) {
-            util.log('youtube-dl: ' + data.toString().trim());
+
+        video.stderr.on('data', function(data) {
+            //util.log('youtube-dl: ' + data.toString().trim());
         });
-        dl_proc.on('close', function(code) {
-            console.log('ciao');
+        video.on('close', function(code) {
+            console.log('Download of ' + out_file_name + 'finished');
         });
     }
 
