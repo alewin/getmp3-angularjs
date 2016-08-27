@@ -24,7 +24,6 @@ app.controller('MusicCtrl', function($scope, $route, MusicService) {
     var iconImage = 'img/music_icon.png';
     $scope.which_service = $route.current.$$route.paramMusicService;
 
-
     function getYoutubemp3() {
         return 'http://youtube.com'; // TODO lol
     }
